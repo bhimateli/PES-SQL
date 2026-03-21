@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL Constraints</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 5px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 SQL Constraints</h1>
+
+<div class="section">
+<h2>1. What are Constraints?</h2>
+<p>Constraints are rules applied to table columns to ensure data accuracy and integrity.</p>
+</div>
+
+<div class="section">
+<h2>2. NOT NULL</h2>
+<p>Ensures that a column cannot have NULL values.</p>
+
+<code>
+CREATE TABLE emp (
+    id INT NOT NULL,
+    name VARCHAR(50)
+);
+</code>
+</div>
+
+<div class="section">
+<h2>3. UNIQUE</h2>
+<p>Ensures all values in a column are different.</p>
+
+<code>
+CREATE TABLE emp (
+    email VARCHAR(100) UNIQUE
+);
+</code>
+</div>
+
+<div class="section">
+<h2>4. PRIMARY KEY</h2>
+<p>Uniquely identifies each record. Cannot be NULL and must be unique.</p>
+
+<code>
+CREATE TABLE emp (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+</code>
+</div>
+
+<div class="section">
+<h2>5. FOREIGN KEY</h2>
+<p>Ensures referential integrity between two tables.</p>
+
+<code>
+CREATE TABLE emp (
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES dept(id)
+);
+</code>
+</div>
+
+<div class="section">
+<h2>6. CHECK</h2>
+<p>Ensures values satisfy a condition.</p>
+
+<code>
+CREATE TABLE emp (
+    salary INT CHECK (salary > 0)
+);
+</code>
+</div>
+
+<div class="section">
+<h2>7. DEFAULT</h2>
+<p>Provides a default value if none is specified.</p>
+
+<code>
+CREATE TABLE emp (
+    salary INT DEFAULT 5000
+);
+</code>
+</div>
+
+<div class="section">
+<h2>8. Combined Example</h2>
+
+<code>
+CREATE TABLE employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    salary INT CHECK (salary > 0),
+    dept_id INT,
+    created_at DATE DEFAULT CURRENT_DATE,
+    FOREIGN KEY (dept_id) REFERENCES department(id)
+);
+</code>
+</div>
+
+<div class="section">
+<h2>9. Summary</h2>
+<ul>
+<li>NOT NULL → No empty values</li>
+<li>UNIQUE → No duplicates</li>
+<li>PRIMARY KEY → Unique + Not NULL</li>
+<li>FOREIGN KEY → Maintains relationship</li>
+<li>CHECK → Validates condition</li>
+<li>DEFAULT → Assigns default value</li>
+</ul>
+</div>
+
+</body>
+</html>
