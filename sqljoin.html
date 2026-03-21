@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL Joins Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 5px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 SQL Joins - Complete Guide</h1>
+
+<div class="section">
+<h2>1. Introduction to Joins</h2>
+<p>Joins are used to combine data from multiple tables based on a related column.</p>
+</div>
+
+<div class="section">
+<h2>2. ER Diagram (Concept)</h2>
+<p>Shows relationship between tables (e.g., Employee → Department using foreign key).</p>
+</div>
+
+<div class="section">
+<h2>3. Simple Join</h2>
+
+<code>
+SELECT e.name, d.dept_name
+FROM emp e
+JOIN dept d ON e.dept_id = d.id;
+</code>
+</div>
+
+<div class="section">
+<h2>4. Table Aliases</h2>
+<p>Short names for tables.</p>
+
+<code>
+SELECT e.name FROM emp e;
+</code>
+</div>
+
+<div class="section">
+<h2>5. Multi-table Join</h2>
+
+<code>
+SELECT e.name, d.dept_name, l.city
+FROM emp e
+JOIN dept d ON e.dept_id = d.id
+JOIN location l ON d.loc_id = l.id;
+</code>
+</div>
+
+<div class="section">
+<h2>6. Joins with GROUP BY</h2>
+
+<code>
+SELECT d.dept_name, COUNT(e.id)
+FROM emp e
+JOIN dept d ON e.dept_id = d.id
+GROUP BY d.dept_name;
+</code>
+</div>
+
+<div class="section">
+<h2>7. JOIN with WHERE / ON / USING</h2>
+
+<code>
+-- ON
+SELECT * FROM emp e JOIN dept d ON e.dept_id = d.id;
+
+-- WHERE
+SELECT * FROM emp e, dept d WHERE e.dept_id = d.id;
+
+-- USING
+SELECT * FROM emp JOIN dept USING (dept_id);
+</code>
+</div>
+
+<div class="section">
+<h2>8. Join with Row Selection</h2>
+
+<code>
+SELECT e.name
+FROM emp e
+JOIN dept d ON e.dept_id = d.id
+WHERE d.dept_name = 'HR';
+</code>
+</div>
+
+<div class="section">
+<h2>9. Natural Join</h2>
+<p>Automatically joins columns with same name.</p>
+
+<code>
+SELECT * FROM emp NATURAL JOIN dept;
+</code>
+</div>
+
+<div class="section">
+<h2>10. Equi Join</h2>
+<p>Join using equality condition (=).</p>
+
+<code>
+SELECT * FROM emp e JOIN dept d ON e.dept_id = d.id;
+</code>
+</div>
+
+<div class="section">
+<h2>11. Non-Equi Join</h2>
+<p>Join using non-equality conditions.</p>
+
+<code>
+SELECT * FROM emp e
+JOIN salary_grade s
+ON e.salary BETWEEN s.min_sal AND s.max_sal;
+</code>
+</div>
+
+<div class="section">
+<h2>12. Left, Right, Outer Join</h2>
+
+<code>
+-- LEFT JOIN
+SELECT * FROM emp e LEFT JOIN dept d ON e.dept_id = d.id;
+
+-- RIGHT JOIN
+SELECT * FROM emp e RIGHT JOIN dept d ON e.dept_id = d.id;
+
+-- FULL OUTER JOIN
+SELECT * FROM emp e FULL OUTER JOIN dept d ON e.dept_id = d.id;
+</code>
+</div>
+
+<div class="section">
+<h2>13. Cross Join</h2>
+<p>Returns all combinations.</p>
+
+<code>
+SELECT * FROM emp CROSS JOIN dept;
+</code>
+</div>
+
+<div class="section">
+<h2>14. Rules for Multi-Join Queries</h2>
+<ul>
+<li>Use proper join conditions to avoid Cartesian product</li>
+<li>Use table aliases for readability</li>
+<li>Join order matters for performance</li>
+<li>Filter data using WHERE clause</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>15. Summary</h2>
+<ul>
+<li>Joins combine data from multiple tables</li>
+<li>Different types serve different purposes</li>
+<li>Use aliases for clarity</li>
+<li>Always define proper join conditions</li>
+</ul>
+</div>
+
+</body>
+</html>
