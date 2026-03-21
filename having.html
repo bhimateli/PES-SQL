@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HAVING Clause - Complete Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: #ffffff;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 4px 6px;
+        border-radius: 4px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 HAVING Clause - Detailed Notes</h1>
+
+<div class="section">
+<h2>1. What is HAVING?</h2>
+<p>The <b>HAVING</b> clause is used to filter grouped data after applying aggregate functions.</p>
+<p>👉 Works after <code>GROUP BY</code></p>
+</div>
+
+<div class="section">
+<h2>2. HAVING Clause Syntax</h2>
+<code>
+SELECT column, AGG_FUNCTION(column)<br>
+FROM table<br>
+GROUP BY column<br>
+HAVING condition;
+</code>
+</div>
+
+<div class="section">
+<h2>3. Aggregation with HAVING</h2>
+<p>Used to filter groups based on aggregate values.</p>
+
+<code>
+SELECT dept_id, AVG(salary)<br>
+FROM employees<br>
+GROUP BY dept_id<br>
+HAVING AVG(salary) > 5000;
+</code>
+
+<p>👉 Returns departments where average salary is greater than 5000</p>
+</div>
+
+<div class="section">
+<h2>4. HAVING without GROUP BY</h2>
+<p>HAVING can be used without GROUP BY when aggregation is applied to the entire table.</p>
+
+<code>
+SELECT AVG(salary)<br>
+FROM employees<br>
+HAVING AVG(salary) > 5000;
+</code>
+
+<p>👉 Treats entire table as a single group</p>
+</div>
+
+<div class="section">
+<h2>5. HAVING vs WHERE</h2>
+<ul>
+<li><b>WHERE:</b> Filters rows before grouping</li>
+<li><b>HAVING:</b> Filters after grouping</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>6. Restriction on Grouped Queries</h2>
+<ul>
+<li>Columns in SELECT must be:
+    <ul>
+        <li>Either in GROUP BY</li>
+        <li>Or used with aggregate functions</li>
+    </ul>
+</li>
+<li>Cannot select non-grouped, non-aggregated columns</li>
+</ul>
+
+<code>
+-- ❌ Invalid<br>
+SELECT dept_id, name, AVG(salary)<br>
+FROM employees<br>
+GROUP BY dept_id;
+</code>
+
+<code>
+-- ✅ Valid<br>
+SELECT dept_id, AVG(salary)<br>
+FROM employees<br>
+GROUP BY dept_id;
+</code>
+</div>
+
+<div class="section">
+<h2>7. Combined Example</h2>
+
+<code>
+SELECT dept_id, COUNT(*)<br>
+FROM employees<br>
+WHERE salary > 3000<br>
+GROUP BY dept_id<br>
+HAVING COUNT(*) > 5;
+</code>
+
+<p>👉 Filters rows → groups → filters groups</p>
+</div>
+
+<div class="section">
+<h2>8. Summary</h2>
+<ul>
+<li>HAVING filters grouped data</li>
+<li>Used with aggregate functions</li>
+<li>Works after GROUP BY</li>
+<li>Can be used without GROUP BY</li>
+</ul>
+</div>
+
+</body>
+</html>
