@@ -34,6 +34,13 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .box {
+            background:#ffffff;
+            border-radius:10px;
+            padding:20px;
+            margin:25px 0;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 
@@ -157,6 +164,23 @@ WHERE salary > (
     WHERE department_id = e.department_id
 );
 </pre>
+</div>
+
+<!-- 🔥 NEW WINDOW FUNCTION BOX -->
+<div class="box">
+<h3 style="color:#2c3e50;">📊 SQL Window Functions (Quick Notes)</h3>
+<ul style="line-height:1.8;">
+    <li><b>ROW_NUMBER()</b> → Assigns unique sequential number</li>
+    <li><b>RANK()</b> → Assigns rank with gaps</li>
+    <li><b>DENSE_RANK()</b> → Assigns rank without gaps</li>
+    <li><b>NTILE(n)</b> → Divides rows into n buckets</li>
+    <li><b>LAG()</b> → Gets previous row value</li>
+    <li><b>LEAD()</b> → Gets next row value</li>
+    <li><b>FIRST_VALUE()</b> → First value in window</li>
+    <li><b>LAST_VALUE()</b> → Last value in window</li>
+    <li><b>SUM()</b> → Running total</li>
+    <li><b>AVG()</b> → Moving average</li>
+</ul>
 </div>
 
 <h2>🛠️ DDL Statements</h2>
