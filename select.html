@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL SELECT & Functions Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 5px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 SQL SELECT, Operators & Functions</h1>
+
+<div class="section">
+<h2>1. SELECT with Predicates</h2>
+<p>Used to filter records using conditions.</p>
+
+<code>
+SELECT * FROM employees WHERE salary > 5000;
+</code>
+</div>
+
+<div class="section">
+<h2>2. Comparison Operators</h2>
+<ul>
+<li>=, >, <, >=, <=, !=</li>
+</ul>
+
+<code>
+SELECT * FROM emp WHERE salary >= 5000;
+</code>
+</div>
+
+<div class="section">
+<h2>3. BETWEEN</h2>
+<p>Filters values within a range.</p>
+
+<code>
+SELECT * FROM emp WHERE salary BETWEEN 3000 AND 6000;
+</code>
+</div>
+
+<div class="section">
+<h2>4. IN</h2>
+<p>Matches values in a list.</p>
+
+<code>
+SELECT * FROM emp WHERE dept_id IN (1,2,3);
+</code>
+</div>
+
+<div class="section">
+<h2>5. LIKE & Wildcards</h2>
+<ul>
+<li>% → any number of characters</li>
+<li>_ → single character</li>
+</ul>
+
+<code>
+SELECT * FROM emp WHERE name LIKE 'A%';
+</code>
+</div>
+
+<div class="section">
+<h2>6. LIMIT</h2>
+<p>Restricts number of rows.</p>
+
+<code>
+SELECT * FROM emp LIMIT 5;
+</code>
+</div>
+
+<div class="section">
+<h2>7. SET Operators</h2>
+<ul>
+<li>UNION</li>
+<li>UNION ALL</li>
+<li>INTERSECT</li>
+<li>MINUS</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>8. UNION vs UNION ALL</h2>
+<ul>
+<li>UNION → removes duplicates</li>
+<li>UNION ALL → keeps duplicates</li>
+</ul>
+
+<code>
+SELECT id FROM A
+UNION
+SELECT id FROM B;
+</code>
+</div>
+
+<div class="section">
+<h2>9. Duplicate Rows</h2>
+<p>Handled using DISTINCT.</p>
+
+<code>
+SELECT DISTINCT dept_id FROM emp;
+</code>
+</div>
+
+<div class="section">
+<h2>10. Operator Precedence</h2>
+<p>Order of execution: NOT → AND → OR</p>
+
+<code>
+SELECT * FROM emp WHERE salary > 5000 AND dept_id = 1;
+</code>
+</div>
+
+<div class="section">
+<h2>11. Numeric Functions</h2>
+
+<code>
+SELECT ROUND(12.567,2);
+SELECT FLOOR(12.9);
+SELECT CEIL(12.1);
+SELECT TRUNCATE(12.567,2);
+</code>
+</div>
+
+<div class="section">
+<h2>12. String Functions</h2>
+
+<code>
+SELECT UPPER(name), LOWER(name) FROM emp;
+SELECT LENGTH(name) FROM emp;
+</code>
+</div>
+
+<div class="section">
+<h2>13. Date Functions</h2>
+
+<code>
+SELECT CURRENT_DATE;
+SELECT YEAR(date), MONTH(date) FROM orders;
+</code>
+</div>
+
+<div class="section">
+<h2>14. Other Functions</h2>
+
+<code>
+SELECT BIN(10);
+SELECT CAST(salary AS CHAR);
+SELECT COALESCE(NULL, 10);
+</code>
+</div>
+
+<div class="section">
+<h2>15. Sorting (ORDER BY)</h2>
+
+<code>
+SELECT * FROM emp ORDER BY salary DESC;
+</code>
+
+<ul>
+<li>ASC → Ascending</li>
+<li>DESC → Descending</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>16. Summary</h2>
+<ul>
+<li>Predicates filter data</li>
+<li>Set operators combine results</li>
+<li>Functions manipulate data</li>
+<li>ORDER BY sorts output</li>
+</ul>
+</div>
+
+</body>
+</html>
