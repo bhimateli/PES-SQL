@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL GA Solved Paper</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background-color: #f4f6f8;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        .subtitle {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a5276;
+            margin-top: 20px;
+        }
+        .question {
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        .answer {
+            margin-left: 10px;
+        }
+        pre {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>SQL GA Solved Paper</h1>
+
+<h2>📘 SQL Queries</h2>
+
+<div class="subtitle">1. Employee Joining Information</div>
+<div class="question">Write a query that returns "Joined on" for all employees.</div>
+<div class="answer">
+<pre>
+SELECT CONCAT(first_name, " Joined on ", hire_date) 
+FROM employees;
+</pre>
+</div>
+
+<div class="subtitle">2. Name Formatting</div>
+<div class="question">Print first letter in lowercase and remaining in uppercase.</div>
+<div class="answer">
+<pre>
+SELECT CONCAT(LOWER(SUBSTRING(first_name,1,1)),
+UPPER(SUBSTRING(first_name,2)))
+FROM employees;
+</pre>
+</div>
+
+<div class="subtitle">3. Employees Working More Than 30 Years</div>
+<div class="question">Display employee name and hire date for employees with >30 years.</div>
+<div class="answer">
+<pre>
+SELECT CONCAT(first_name, " ", last_name), hire_date
+FROM employees
+WHERE DATEDIFF(CURDATE(), hire_date) > 30*365;
+</pre>
+</div>
+
+<div class="subtitle">4. Salary Grade Classification</div>
+<div class="question">Display grade based on salary ranges.</div>
+<div class="answer">
+<pre>
+SELECT first_name, salary,
+CASE 
+    WHEN salary < 3000 THEN 'Grade V'
+    WHEN salary BETWEEN 3000 AND 5000 THEN 'Grade IV'
+    WHEN salary > 5000 AND salary <= 10000 THEN 'Grade III'
+    WHEN salary > 10000 AND salary <= 50000 THEN 'Grade II'
+    WHEN salary > 50000 THEN 'Grade I'
+END AS Grade
+FROM employees;
+</pre>
+</div>
+
+<div class="subtitle">5. Employees with Same Joining Date</div>
+<div class="question">Display employees having same hire date.</div>
+<div class="answer">
+<pre>
+SELECT first_name, job_id, hire_date
+FROM employees
+WHERE hire_date IN (
+    SELECT hire_date FROM employees
+    GROUP BY hire_date HAVING COUNT(*) > 1
+);
+</pre>
+</div>
+
+<div class="subtitle">6. Maximum Salary per Department</div>
+<div class="question">Find maximum salary in each department.</div>
+<div class="answer">
+<pre>
+SELECT department_id, MAX(salary)
+FROM employees
+GROUP BY department_id;
+</pre>
+</div>
+
+<div class="subtitle">7. Department Headcount</div>
+<div class="question">Display employee count per department with department name.</div>
+<div class="answer">
+<pre>
+SELECT d.department_name, COUNT(e.employee_id)
+FROM employees e
+JOIN departments d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
+</pre>
+</div>
+
+<div class="subtitle">8. Set Operator Example</div>
+<div class="question">Display employees from department 60 and 90.</div>
+<div class="answer">
+<pre>
+SELECT employee_id, first_name, salary, department_id 
+FROM employees WHERE department_id = 60
+UNION
+SELECT employee_id, first_name, salary, department_id 
+FROM employees WHERE department_id = 90;
+</pre>
+</div>
+
+<div class="subtitle">9. Second Highest Salary</div>
+<div class="question">Find second highest salary.</div>
+<div class="answer">
+<pre>
+SELECT MAX(salary)
+FROM employees
+WHERE salary NOT IN (SELECT MAX(salary) FROM employees);
+</pre>
+</div>
+
+<div class="subtitle">10. Above Average Salary</div>
+<div class="question">Find employees earning more than department average.</div>
+<div class="answer">
+<pre>
+SELECT employee_id, first_name, last_name, salary, department_id
+FROM employees e
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department_id = e.department_id
+);
+</pre>
+</div>
+
+<h2>🛠️ DDL Statements</h2>
+
+<div class="subtitle">11. Create Course Table</div>
+<div class="question">Create table with constraints.</div>
+<div class="answer">
+<pre>
+CREATE TABLE Course (
+    Course_ID INT,
+    Course_Name VARCHAR(10),
+    course_duration INT,
+    course_title VARCHAR(20),
+    course_start_date DATE,
+    CHECK (course_duration <= 21),
+    CHECK (course_title IN ('Python','SQL','STATS'))
+);
+</pre>
+</div>
+
+<div class="subtitle">12. Create View</div>
+<div class="question">Create view emp_dept using employees and departments.</div>
+<div class="answer">
+<pre>
+CREATE VIEW emp_dept AS
+SELECT e.employee_id, e.department_id, d.department_name,
+       e.salary, e.commission_pct, e.hire_date
+FROM employees e
+JOIN departments d
+ON e.department_id = d.department_id;
+</pre>
+</div>
+
+</body>
+</html>
