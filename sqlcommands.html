@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL Commands Introduction</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 5px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 SQL Commands Introduction</h1>
+
+<div class="section">
+<h2>1. SQL Command Types</h2>
+<ul>
+<li><b>DDL (Data Definition Language)</b> → CREATE, ALTER, DROP</li>
+<li><b>DML (Data Manipulation Language)</b> → INSERT, UPDATE, DELETE</li>
+<li><b>DQL (Data Query Language)</b> → SELECT</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>2. Create & Drop Database</h2>
+
+<code>
+CREATE DATABASE company;
+</code>
+
+<code>
+DROP DATABASE company;
+</code>
+</div>
+
+<div class="section">
+<h2>3. Data Types</h2>
+<ul>
+<li>INT → Integer</li>
+<li>VARCHAR → Text</li>
+<li>DATE → Date values</li>
+<li>FLOAT → Decimal values</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>4. Key Attributes</h2>
+<ul>
+<li><b>Primary Key:</b> Unique + Not NULL</li>
+<li><b>Foreign Key:</b> References another table</li>
+<li><b>Parent Table:</b> Referenced table</li>
+<li><b>Child Table:</b> Referencing table</li>
+</ul>
+
+<code>
+FOREIGN KEY (dept_id) REFERENCES department(id);
+</code>
+</div>
+
+<div class="section">
+<h2>5. DML Commands</h2>
+
+<h3>INSERT</h3>
+<code>
+INSERT INTO emp (id, name) VALUES (1, 'A');
+</code>
+
+<h3>UPDATE</h3>
+<code>
+UPDATE emp SET salary = 5000 WHERE id = 1;
+</code>
+
+<h3>DELETE</h3>
+<code>
+DELETE FROM emp WHERE id = 1;
+</code>
+</div>
+
+<div class="section">
+<h2>6. DQL - SELECT with WHERE</h2>
+
+<code>
+SELECT * FROM emp WHERE salary > 3000;
+</code>
+</div>
+
+<div class="section">
+<h2>7. Operators with WHERE</h2>
+<ul>
+<li>=, >, <, >=, <=, !=</li>
+<li>AND, OR, NOT</li>
+</ul>
+
+<code>
+SELECT * FROM emp WHERE salary > 3000 AND dept_id = 1;
+</code>
+</div>
+
+<div class="section">
+<h2>8. LIMIT</h2>
+
+<code>
+SELECT * FROM emp LIMIT 5;
+</code>
+</div>
+
+<div class="section">
+<h2>9. Compound Search Condition</h2>
+
+<code>
+SELECT * FROM emp 
+WHERE salary > 3000 AND dept_id = 1 OR name LIKE 'A%';
+</code>
+
+<p>👉 Uses multiple conditions together</p>
+</div>
+
+<div class="section">
+<h2>10. Missing Data (NULL)</h2>
+
+<code>
+SELECT * FROM emp WHERE salary IS NULL;
+</code>
+
+<code>
+SELECT * FROM emp WHERE salary IS NOT NULL;
+</code>
+</div>
+
+<div class="section">
+<h2>11. ALTER Table</h2>
+
+<code>
+ALTER TABLE emp ADD age INT;
+</code>
+
+<code>
+ALTER TABLE emp DROP COLUMN age;
+</code>
+</div>
+
+<div class="section">
+<h2>12. Simple Date Functions</h2>
+
+<code>
+SELECT CURRENT_DATE;
+</code>
+
+<code>
+SELECT YEAR(date), MONTH(date) FROM orders;
+</code>
+</div>
+
+<div class="section">
+<h2>13. Summary</h2>
+<ul>
+<li>DDL → Structure (CREATE, ALTER, DROP)</li>
+<li>DML → Data changes (INSERT, UPDATE, DELETE)</li>
+<li>DQL → Data retrieval (SELECT)</li>
+<li>WHERE filters data</li>
+<li>NULL represents missing values</li>
+</ul>
+</div>
+
+</body>
+</html>
