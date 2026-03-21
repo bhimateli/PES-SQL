@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>SQL Learning Portal - Study Dashboard</title>
+
     <style>
         body {
             font-family: Arial;
@@ -13,6 +14,11 @@
 
         h1 {
             color: #2c3e50;
+        }
+
+        #welcome {
+            color: #3498db;
+            margin-top: 10px;
         }
 
         .container {
@@ -58,11 +64,30 @@
             }
         }
     </style>
+
+    <script>
+        function askUserName() {
+            let name = localStorage.getItem("username");
+
+            if (!name) {
+                name = prompt("Enter your name:");
+                if (name) {
+                    localStorage.setItem("username", name);
+                }
+            }
+
+            if (name) {
+                document.getElementById("welcome").innerText = "Welcome, " + name + " 👋";
+            }
+        }
+    </script>
+
 </head>
 
-<body>
+<body onload="askUserName()">
 
 <h1>📘 SQL Learning Portal</h1>
+<h2 id="welcome"></h2>
 <p>Select a document to study</p>
 
 <div class="container">
