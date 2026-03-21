@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GROUP Functions & GROUP BY</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 5px;
+        border-radius: 5px;
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 GROUP Functions & GROUP BY</h1>
+
+<div class="section">
+<h2>1. GROUP Functions (Aggregate Functions)</h2>
+<p>These functions perform calculations on multiple rows and return a single value.</p>
+
+<ul>
+<li><b>COUNT()</b> → Counts number of rows</li>
+<li><b>AVG()</b> → Calculates average value</li>
+<li><b>MAX()</b> → Returns highest value</li>
+<li><b>MIN()</b> → Returns lowest value</li>
+<li><b>SUM()</b> → Returns total sum</li>
+</ul>
+
+<code>
+SELECT COUNT(*) FROM employees;
+</code>
+</div>
+
+<div class="section">
+<h2>2. GROUP BY with Aggregate Function</h2>
+<p>GROUP BY is used to divide data into groups and apply aggregate functions on each group.</p>
+
+<code>
+SELECT dept_id, AVG(salary)
+FROM employees
+GROUP BY dept_id;
+</code>
+
+<p>👉 Calculates average salary for each department</p>
+</div>
+
+<div class="section">
+<h2>3. Grouped Queries</h2>
+<p>Queries that use GROUP BY to summarize data.</p>
+
+<code>
+SELECT dept_id, COUNT(*) AS total_employees
+FROM employees
+GROUP BY dept_id;
+</code>
+
+<p>👉 Shows number of employees per department</p>
+</div>
+
+<div class="section">
+<h2>4. Aggregation with GROUP BY</h2>
+<p>Multiple aggregate functions can be used together.</p>
+
+<code>
+SELECT dept_id, SUM(salary), MAX(salary)
+FROM employees
+GROUP BY dept_id;
+</code>
+
+<p>👉 Total and maximum salary per department</p>
+</div>
+
+<div class="section">
+<h2>5. Multiple Grouping Columns</h2>
+<p>You can group data using more than one column.</p>
+
+<code>
+SELECT dept_id, job_role, AVG(salary)
+FROM employees
+GROUP BY dept_id, job_role;
+</code>
+
+<p>👉 Groups data by department and job role</p>
+</div>
+
+<div class="section">
+<h2>6. NULL Values in GROUP BY</h2>
+<ul>
+<li>NULL values are treated as a separate group</li>
+<li>All NULL values are grouped together</li>
+</ul>
+
+<code>
+SELECT dept_id, COUNT(*)
+FROM employees
+GROUP BY dept_id;
+</code>
+
+<p>👉 Employees with NULL dept_id will form one group</p>
+</div>
+
+<div class="section">
+<h2>7. Important Rules</h2>
+<ul>
+<li>All non-aggregated columns must be included in GROUP BY</li>
+<li>GROUP BY is executed after WHERE</li>
+<li>HAVING is used to filter grouped results</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>8. Summary</h2>
+<ul>
+<li>GROUP functions calculate values over multiple rows</li>
+<li>GROUP BY divides data into groups</li>
+<li>Supports multiple columns for grouping</li>
+<li>NULL values form their own group</li>
+</ul>
+</div>
+
+</body>
+</html>
