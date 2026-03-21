@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SQL Learning Portal</title>
+    <title>SQL Learning Portal - Study Dashboard</title>
     <style>
         body {
             font-family: Arial;
             background-color: #f4f6f8;
             text-align: center;
             padding: 40px;
+            margin: 0;
         }
+
         h1 {
             color: #2c3e50;
         }
@@ -27,6 +29,11 @@
             width: 260px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         a {
@@ -35,12 +42,20 @@
             background: #3498db;
             padding: 10px 15px;
             border-radius: 5px;
-            display: inline-block;
+            display: block;
             margin-top: 10px;
+            width: 100%;
         }
 
         a:hover {
             background: #2980b9;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -58,57 +73,57 @@
         <a href="sql_ga.html">Open</a>
     </div>
 
-	 <div class="card">
-        <h2>Group By</h2>
-        <p>Group By</p>
+    <div class="card">
+        <h2>GROUP BY</h2>
+        <p>Learn grouping and aggregation</p>
         <a href="groupby.html">Open</a>
     </div>
 
     <div class="card">
         <h2>Views</h2>
-        <p>Learn about SQL Views, types, joins, and CHECK OPTION</p>
-        <a href="view.html">Open</a>
+        <p>SQL Views, joins, CHECK OPTION</p>
+        <a href="views.html">Open</a>
     </div>
 
     <div class="card">
         <h2>Data Integrity</h2>
-        <p>Constraints, normalization, referential integrity concepts</p>
+        <p>Constraints, normalization, relationships</p>
         <a href="data_integrity.html">Open</a>
     </div>
 
-	<div class="card">
-        <h2>SQL Constraint</h2>
-        <p>Constraints</p>
+    <div class="card">
+        <h2>SQL Constraints</h2>
+        <p>Primary, Foreign Key, NOT NULL, etc.</p>
         <a href="sql_constraint.html">Open</a>
     </div>
 
-	<div class="card">
+    <div class="card">
         <h2>SQL Joins</h2>
-        <p>Joins</p>
+        <p>All types of joins explained</p>
         <a href="sqljoin.html">Open</a>
     </div>
 
-	<div class="card">
+    <div class="card">
         <h2>SQL Commands</h2>
-        <p>SQL Commands</p>
+        <p>DDL, DML, DQL concepts</p>
         <a href="sqlcommands.html">Open</a>
     </div>
 
-	<div class="card">
-        <h2>SQL Select</h2>
-        <p>SQL Select</p>
+    <div class="card">
+        <h2>SQL SELECT</h2>
+        <p>Filters, operators, functions</p>
         <a href="select.html">Open</a>
     </div>
 
     <div class="card">
         <h2>Transactions</h2>
-        <p>ACID properties, isolation levels, locks, savepoints</p>
-        <a href="transaction.html">Open</a>
+        <p>ACID, locks, isolation levels</p>
+        <a href="transactions.html">Open</a>
     </div>
-	
-	 <div class="card">
-        <h2>HAVING CLAUSE</h2>
-        <p>Having Clause </p>
+
+    <div class="card">
+        <h2>HAVING Clause</h2>
+        <p>Filtering grouped data</p>
         <a href="having.html">Open</a>
     </div>
 
