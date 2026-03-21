@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Concepts Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f4f6f8;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        code {
+            background: #eee;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📘 Database Concepts Cheat Sheet</h1>
+
+<div class="section">
+    <h2>1. Normalization</h2>
+    <p>Normalization is the process of organizing data to reduce redundancy.</p>
+    <ul>
+        <li><b>1NF:</b> Remove duplicate columns, atomic values</li>
+        <li><b>2NF:</b> Remove partial dependency</li>
+        <li><b>3NF:</b> Remove transitive dependency</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>2. Column Constraints</h2>
+    <p>Rules applied on columns to ensure valid data.</p>
+    <ul>
+        <li><code>NOT NULL</code> – value cannot be empty</li>
+        <li><code>DEFAULT</code> – default value if none provided</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>3. Check Constraints</h2>
+    <p>Ensures values meet a condition.</p>
+    <pre>
+CHECK (salary > 0)
+    </pre>
+</div>
+
+<div class="section">
+    <h2>4. Uniqueness Constraints</h2>
+    <p>Ensures all values in a column are unique.</p>
+    <pre>
+UNIQUE (email)
+    </pre>
+</div>
+
+<div class="section">
+    <h2>5. NULL Values</h2>
+    <p>Represents missing or unknown data.</p>
+    <ul>
+        <li>NULL ≠ 0</li>
+        <li>NULL ≠ empty string</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>6. Referential Integrity</h2>
+    <p>Ensures relationships between tables remain consistent.</p>
+    <pre>
+FOREIGN KEY (dept_id) REFERENCES department(id)
+    </pre>
+</div>
+
+<div class="section">
+    <h2>7. Referential Integrity Problems</h2>
+    <ul>
+        <li>Orphan records</li>
+        <li>Invalid foreign keys</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>8. Delete and Update Rules</h2>
+    <ul>
+        <li><code>CASCADE</code> – delete/update child rows</li>
+        <li><code>SET NULL</code> – set foreign key to NULL</li>
+        <li><code>RESTRICT</code> – prevent deletion</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>9. Cascaded Deletes and Updates</h2>
+    <p>Automatically propagate changes to child tables.</p>
+    <pre>
+ON DELETE CASCADE
+ON UPDATE CASCADE
+    </pre>
+</div>
+
+<div class="section">
+    <h2>10. Referential Cycles</h2>
+    <p>Occurs when tables reference each other.</p>
+    <p>Example: A → B → A</p>
+</div>
+
+<div class="section">
+    <h2>11. Foreign Keys and NULL Values</h2>
+    <p>Foreign keys can be NULL unless restricted.</p>
+    <ul>
+        <li>NULL means no relationship</li>
+        <li>Useful for optional relationships</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>12. ACID Properties</h2>
+    <ul>
+        <li><b>Atomicity:</b> All or nothing</li>
+        <li><b>Consistency:</b> Valid state</li>
+        <li><b>Isolation:</b> Transactions don’t interfere</li>
+        <li><b>Durability:</b> Data is permanent</li>
+    </ul>
+</div>
+
+</body>
+</html>

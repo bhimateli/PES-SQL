@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SQL Views - Quick Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f7f9fb;
+    }
+    h1 {
+        color: #2c3e50;
+    }
+    .card {
+        background: #ffffff;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-left: 4px solid #3498db;
+        border-radius: 6px;
+    }
+    code {
+        background: #eef;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 SQL Views - Quick Notes</h1>
+
+<div class="card">
+<h2>1. What is a View?</h2>
+<p>A virtual table based on a SQL query.</p>
+<code>CREATE VIEW v_emp AS SELECT * FROM employees;</code>
+</div>
+
+<div class="card">
+<h2>2. Types of Views</h2>
+<ul>
+<li>Simple View</li>
+<li>Complex View</li>
+<li>Joined View</li>
+<li>Group View</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>3. Joined Views</h2>
+<p>View created using multiple tables.</p>
+<code>
+CREATE VIEW emp_dept AS <br>
+SELECT e.name, d.dept_name <br>
+FROM emp e JOIN dept d ON e.dept_id = d.id;
+</code>
+</div>
+
+<div class="card">
+<h2>4. Horizontal & Vertical Views</h2>
+<ul>
+<li><b>Horizontal:</b> Filters rows (<code>WHERE</code>)</li>
+<li><b>Vertical:</b> Selects specific columns</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>5. Row & Column Subset View</h2>
+<p>Combination of row + column filtering.</p>
+<code>
+CREATE VIEW v_subset AS <br>
+SELECT name, salary FROM emp WHERE salary > 5000;
+</code>
+</div>
+
+<div class="card">
+<h2>6. Group View</h2>
+<p>Uses aggregate functions.</p>
+<code>
+CREATE VIEW dept_salary AS <br>
+SELECT dept_id, SUM(salary) FROM emp GROUP BY dept_id;
+</code>
+</div>
+
+<div class="card">
+<h2>7. CHECK OPTION</h2>
+<p>Ensures inserted/updated data satisfies view condition.</p>
+<code>
+CREATE VIEW v_high_salary AS <br>
+SELECT * FROM emp WHERE salary > 5000 <br>
+WITH CHECK OPTION;
+</code>
+</div>
+
+<div class="card">
+<h2>8. DROP VIEW</h2>
+<p>Deletes a view.</p>
+<code>DROP VIEW v_emp;</code>
+</div>
+
+</body>
+</html>

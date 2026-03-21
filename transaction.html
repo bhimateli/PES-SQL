@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transaction Processing - Detailed Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f6f8;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: #ffffff;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    code {
+        background: #eef;
+        padding: 4px 6px;
+        border-radius: 4px;
+        display: block;
+        margin-top: 5px;
+    }
+    ul {
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>📘 Transaction Processing - Detailed Notes</h1>
+
+<div class="section">
+<h2>1. What is Transaction Processing?</h2>
+<p>A transaction is a sequence of operations performed as a single logical unit of work.</p>
+<ul>
+<li>Either all operations succeed → <b>COMMIT</b></li>
+<li>Or all operations fail → <b>ROLLBACK</b></li>
+</ul>
+<code>
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+</code>
+</div>
+
+<div class="section">
+<h2>2. Transactional Model (ACID)</h2>
+<ul>
+<li><b>Atomicity:</b> All or nothing</li>
+<li><b>Consistency:</b> Data remains valid</li>
+<li><b>Isolation:</b> Transactions don’t interfere</li>
+<li><b>Durability:</b> Changes are permanent</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>3. Isolation Levels</h2>
+<p>Isolation controls how transactions see each other’s data.</p>
+
+<ul>
+<li><b>Read Uncommitted:</b> Dirty reads allowed</li>
+<li><b>Read Committed:</b> Only committed data visible</li>
+<li><b>Repeatable Read:</b> Same data seen during transaction</li>
+<li><b>Serializable:</b> Highest isolation, behaves like sequential execution</li>
+</ul>
+
+<h3>Problems Solved</h3>
+<ul>
+<li>Dirty Read</li>
+<li>Non-repeatable Read</li>
+<li>Phantom Read</li>
+</ul>
+
+<code>
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+</code>
+</div>
+
+<div class="section">
+<h2>4. Classification of Isolation Model</h2>
+<ul>
+<li><b>Low Isolation:</b> High performance, less consistency</li>
+<li><b>High Isolation:</b> Strong consistency, lower performance</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>5. SAVEPOINT and RELEASE SAVEPOINT</h2>
+<p>Used to create checkpoints within a transaction.</p>
+
+<code>
+BEGIN;
+SAVEPOINT sp1;
+UPDATE emp SET salary = 5000 WHERE id = 1;
+
+ROLLBACK TO sp1;
+
+RELEASE SAVEPOINT sp1;
+COMMIT;
+</code>
+
+<ul>
+<li><b>SAVEPOINT:</b> Marks a point</li>
+<li><b>ROLLBACK TO:</b> Undo to that point</li>
+<li><b>RELEASE:</b> Removes savepoint</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>6. Locking Levels</h2>
+<p>Locks prevent conflicts between transactions.</p>
+
+<ul>
+<li><b>Row-level lock:</b> Locks specific rows</li>
+<li><b>Page-level lock:</b> Locks a block of rows</li>
+<li><b>Table-level lock:</b> Locks entire table</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>7. Shared and Exclusive Locks</h2>
+
+<ul>
+<li><b>Shared Lock (S):</b>
+    <ul>
+        <li>Used for reading</li>
+        <li>Multiple transactions allowed</li>
+    </ul>
+</li>
+
+<li><b>Exclusive Lock (X):</b>
+    <ul>
+        <li>Used for writing</li>
+        <li>No other transaction allowed</li>
+    </ul>
+</li>
+</ul>
+
+<code>
+SELECT * FROM emp WITH (NOLOCK); -- Shared/No lock scenario
+
+UPDATE emp SET salary = 6000 WHERE id = 1; -- Exclusive lock
+</code>
+
+</div>
+
+<div class="section">
+<h2>8. Summary</h2>
+<ul>
+<li>Transactions ensure data integrity</li>
+<li>Isolation prevents data conflicts</li>
+<li>Savepoints allow partial rollback</li>
+<li>Locks control concurrent access</li>
+</ul>
+</div>
+
+</body>
+</html>
