@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Window Functions Interview Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+        }
+        .question {
+            background: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        code {
+            background: #eee;
+            padding: 5px;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Top 10 Window Function Interview Questions</h1>
+
+<div class="question">
+    <h2>1. Running Total per Group</h2>
+    <p>Show cumulative sales for each crop by date.</p>
+    <code>SUM(quantity_kg) OVER (PARTITION BY crop_id ORDER BY sale_date)</code>
+</div>
+
+<div class="question">
+    <h2>2. Rank Farmers by Total Sales</h2>
+    <p>Rank farmers based on total sales.</p>
+    <code>RANK() OVER (ORDER BY total_sales DESC)</code>
+</div>
+
+<div class="question">
+    <h2>3. Top 3 Crops per Farmer</h2>
+    <p>Get top 3 crops sold by each farmer.</p>
+    <code>ROW_NUMBER() OVER (PARTITION BY farmer_id ORDER BY total_sales DESC)</code>
+</div>
+
+<div class="question">
+    <h2>4. Remove Duplicate Records</h2>
+    <p>Keep only latest sale per farmer and crop.</p>
+    <code>ROW_NUMBER() OVER (PARTITION BY farmer_id, crop_id ORDER BY sale_date DESC)</code>
+</div>
+
+<div class="question">
+    <h2>5. Compare Current vs Previous Sale</h2>
+    <p>Show difference between current and previous sale.</p>
+    <code>LAG(quantity_kg) OVER (PARTITION BY crop_id ORDER BY sale_date)</code>
+</div>
+
+<div class="question">
+    <h2>6. First and Last Sale per Crop</h2>
+    <p>Get first and last sale price.</p>
+    <code>FIRST_VALUE(price_per_kg) OVER (...)</code>
+    <code>LAST_VALUE(price_per_kg) OVER (...)</code>
+</div>
+
+<div class="question">
+    <h2>7. Moving Average</h2>
+    <p>Calculate 3-day moving average.</p>
+    <code>AVG(quantity_kg) OVER (ORDER BY sale_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)</code>
+</div>
+
+<div class="question">
+    <h2>8. Sales Above Average</h2>
+    <p>Find sales greater than average.</p>
+    <code>AVG(quantity_kg) OVER (PARTITION BY crop_id)</code>
+</div>
+
+<div class="question">
+    <h2>9. Divide Data into Buckets</h2>
+    <p>Split farmers into 4 groups.</p>
+    <code>NTILE(4) OVER (ORDER BY total_sales DESC)</code>
+</div>
+
+<div class="question">
+    <h2>10. Find Gaps in Dates</h2>
+    <p>Detect missing sales dates.</p>
+    <code>LAG(sale_date) OVER (PARTITION BY crop_id ORDER BY sale_date)</code>
+</div>
+
+</body>
+</html>
